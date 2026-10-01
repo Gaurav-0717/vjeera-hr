@@ -1,18 +1,21 @@
+import { Link } from "react-router-dom";
+
 function Services() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-warning text-dark py-5 mb-5">
+      <section className="public-page-hero">
         <div className="container">
-          <h1 className="display-4 fw-bold mb-3">Our Services</h1>
+          <p className="eyebrow">What we do</p>
+          <h1 className="fw-bold mb-3">Our Services</h1>
           <p className="lead">
             Comprehensive HR Solutions for Every Organization
           </p>
         </div>
       </section>
 
-      <div className="container py-5">
-        <section className="mb-5 p-4 bg-light rounded">
+      <div className="container page-content">
+        <section className="page-intro">
           <h2 className="h3 mb-3 fw-bold text-warning">
             💼 Comprehensive HR Solutions
           </h2>
@@ -161,7 +164,7 @@ function Services() {
         </section>
 
         <section className="mb-5 p-4 bg-info bg-opacity-10 rounded">
-          <h2 className="h3 mb-3 fw-bold text-info">✨ Additional Services</h2>
+          <h2 className="h3 mb-3 fw-bold text-info">Additional Services</h2>
           <ul className="list-group list-group-flush bg-transparent">
             <li className="list-group-item bg-transparent">
               ✓ Succession Planning & Talent Management
@@ -185,22 +188,19 @@ function Services() {
         </section>
 
         <section className="mt-5">
-          <div
-            className="alert alert-info alert-dismissible fade show"
-            role="alert"
-            style={{ backgroundColor: "#e7f3ff", borderColor: "#0c63e4" }}
-          >
-            <strong className="text-info">🚀 Ready to get started?</strong>{" "}
-            <span className="text-dark">
-              Contact us today to discuss your HR needs and discover how Vjeera
-              HR can help your organization succeed.
-            </span>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
+          <div className="public-card">
+            <div className="card-body d-flex flex-wrap align-items-center justify-content-between gap-3">
+              <div>
+                <strong className="text-info">🚀 Ready to get started?</strong>{" "}
+                <span className="text-dark">
+                  Contact us today to discuss your HR needs and discover how
+                  Vjeera HR can help your organization succeed.
+                </span>
+              </div>
+              <Link to="/contact" className="btn btn-cta">
+                Contact us
+              </Link>
+            </div>
           </div>
         </section>
       </div>

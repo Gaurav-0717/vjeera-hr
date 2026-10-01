@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./pages/Home.jsx";
@@ -17,6 +17,7 @@ import {
   AdminEnrollments,
   AdminApplications,
   AdminCorporate,
+  AdminRecordsHome,
 } from "./pages/admin/AdminRecords.jsx";
 import AdminJobs from "./pages/admin/AdminJobs.jsx";
 import AdminCourses from "./pages/admin/AdminCourses.jsx";
@@ -39,6 +40,8 @@ function App() {
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="records" element={<AdminRecordsHome />} />
         <Route path="contacts" element={<AdminContacts />} />
         <Route path="enrollments" element={<AdminEnrollments />} />
         <Route path="applications" element={<AdminApplications />} />
@@ -49,13 +52,16 @@ function App() {
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/services" element={<Services />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/career" element={<Career />} />
         <Route path="/corporate" element={<Corporate />} />
         <Route path="/our-client" element={<OurClient />} />
+        <Route path="/clients" element={<OurClient />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

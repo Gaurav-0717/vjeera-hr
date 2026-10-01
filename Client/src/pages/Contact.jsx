@@ -61,7 +61,7 @@ function Contact() {
             </p>
             <div className="mb-4">
               <h6 className="fw-bold mb-2">Address</h6>
-              <p>8 The Green, Ste A, Dover, DE 19901, Finland</p>
+              <p>8 The Green, Ste A, Dover, DE 19901</p>
             </div>
             <div className="mb-4">
               <h6 className="fw-bold mb-2">Phone</h6>
@@ -70,15 +70,19 @@ function Contact() {
           </div>
 
           <div className="col-lg-7">
-            <div className="card border-0 p-4">
+            <div className="contact-form-card">
               {submitted && (
-                <div className="alert alert-success" role="alert">
+                <div className="alert alert-success" role="status">
                   Thanks — your message has been received. We'll be in touch
                   soon.
                 </div>
               )}
               {error && (
-                <div className="alert alert-danger" role="alert">
+                <div
+                  className="alert alert-danger"
+                  role="alert"
+                  aria-live="assertive"
+                >
                   {error}
                 </div>
               )}
@@ -94,6 +98,8 @@ function Contact() {
                     placeholder="Enter Name"
                     value={form.name}
                     onChange={handleChange}
+                    minLength={2}
+                    maxLength={100}
                     required
                     disabled={loading}
                   />
@@ -109,6 +115,7 @@ function Contact() {
                     placeholder="Enter Email"
                     value={form.email}
                     onChange={handleChange}
+                    maxLength={254}
                     required
                     disabled={loading}
                   />
@@ -124,6 +131,7 @@ function Contact() {
                     placeholder="Enter Number"
                     value={form.phone}
                     onChange={handleChange}
+                    maxLength={30}
                     disabled={loading}
                   />
                 </div>
@@ -138,6 +146,7 @@ function Contact() {
                     placeholder="Subject"
                     value={form.subject}
                     onChange={handleChange}
+                    maxLength={150}
                     disabled={loading}
                   />
                 </div>
@@ -152,12 +161,13 @@ function Contact() {
                     placeholder="Your message"
                     value={form.message}
                     onChange={handleChange}
+                    maxLength={2000}
                     disabled={loading}
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-warning fw-bold"
+                  className="btn btn-cta"
                   disabled={loading}
                 >
                   {loading ? "Submitting..." : "Submit"}

@@ -1,175 +1,123 @@
+import { Link } from "react-router-dom";
+
 function OurClient() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary text-white py-5 mb-5">
+      <section className="public-page-hero">
         <div className="container">
-          <h1 className="display-4 fw-bold mb-3">Our Valued Clients</h1>
-          <p className="lead">Trusted by Leading Organizations Worldwide</p>
+          <p className="eyebrow">Partnerships</p>
+          <h1 className="fw-bold mb-3">Our Clients</h1>
+          <p className="lead">
+            People-focused work, shaped around each organization.
+          </p>
         </div>
       </section>
 
       <div className="container py-5">
-        <section className="mb-5 p-4 bg-light rounded">
+        <section className="page-intro">
           <h2 className="h3 mb-3 fw-bold text-primary">
-            🌍 Trusted by Leading Organizations
+            Thoughtful partnerships
           </h2>
           <p className="lead">
-            We're proud to have partnered with 500+ organizations across diverse
-            industries, helping them build stronger teams and achieve their
-            business objectives.
+            We do not publish client names, logos or testimonials here without
+            approval. Contact our team to discuss the experience most relevant
+            to your people and business needs.
           </p>
         </section>
 
         <section className="mb-5">
-          <h2 className="h3 mb-4 fw-bold">⭐ Success Stories</h2>
+          <h2 className="h3 mb-4 fw-bold">How we can work together</h2>
           <div className="row">
             <div className="col-md-6 mb-3">
               <div
-                className="card border-0 shadow-sm h-100 border-start border-5 border-info hover-shadow"
+                className="public-card"
                 style={{ transition: "all 0.3s ease" }}
               >
                 <div className="card-body">
-                  <h5 className="card-title text-info fw-bold">
-                    TechVision Solutions
-                  </h5>
+                  <h5 className="card-title fw-bold">Talent acquisition</h5>
                   <p className="text-muted small">
-                    <strong>IT & Software Services</strong>
+                    <strong>Recruitment</strong>
                   </p>
                   <p className="card-text">
-                    "Vjeera HR transformed our talent acquisition process,
-                    reducing time-to-hire by 40% and significantly improving our
-                    hiring quality. Highly recommended!"
+                    Role profiling, candidate sourcing and screening can be
+                    tailored to the hiring requirements you bring to us.
                   </p>
-                  <p>
-                    <strong>- HR Director, TechVision Solutions</strong>
-                  </p>
+                  <p></p>
                 </div>
               </div>
             </div>
             <div className="col-md-6 mb-3">
               <div
-                className="card border-0 shadow-sm h-100 border-start border-5 border-success hover-shadow"
+                className="public-card"
                 style={{ transition: "all 0.3s ease" }}
               >
                 <div className="card-body">
-                  <h5 className="card-title text-success fw-bold">
-                    GlobalTrade Inc.
+                  <h5 className="card-title fw-bold">
+                    Learning and development
                   </h5>
                   <p className="text-muted small">
-                    <strong>Import-Export Business</strong>
+                    <strong>Training</strong>
                   </p>
                   <p className="card-text">
-                    "Their executive coaching program elevated our leadership
-                    team's effectiveness. We've seen a 35% improvement in team
-                    engagement scores."
+                    Practical training and coaching can support capability
+                    development at individual, team and leadership levels.
                   </p>
-                  <p>
-                    <strong>- CEO, GlobalTrade Inc.</strong>
-                  </p>
+                  <p></p>
                 </div>
               </div>
             </div>
             <div className="col-md-6 mb-3">
               <div
-                className="card border-0 shadow-sm h-100 border-start border-5 border-warning hover-shadow"
+                className="public-card"
                 style={{ transition: "all 0.3s ease" }}
               >
                 <div className="card-body">
-                  <h5 className="card-title text-warning fw-bold">
-                    HealthCare Plus
-                  </h5>
+                  <h5 className="card-title fw-bold">HR consulting</h5>
                   <p className="text-muted small">
-                    <strong>Healthcare Industry</strong>
+                    <strong>People operations</strong>
                   </p>
                   <p className="card-text">
-                    "The organizational restructuring guided by Vjeera HR went
-                    smoothly. Our employee retention improved by 28%
-                    post-restructuring."
+                    Get support with people practices, policy development and
+                    organizational challenges.
                   </p>
-                  <p>
-                    <strong>- Head of HR, HealthCare Plus</strong>
-                  </p>
+                  <p></p>
                 </div>
               </div>
             </div>
             <div className="col-md-6 mb-3">
               <div
-                className="card border-0 shadow-sm h-100 border-start border-5 border-danger hover-shadow"
+                className="public-card"
                 style={{ transition: "all 0.3s ease" }}
               >
                 <div className="card-body">
-                  <h5 className="card-title text-danger fw-bold">
-                    Retail Solutions Ltd.
-                  </h5>
+                  <h5 className="card-title fw-bold">Leadership development</h5>
                   <p className="text-muted small">
-                    <strong>Retail & E-commerce</strong>
+                    <strong>Coaching</strong>
                   </p>
                   <p className="card-text">
-                    "Their training and development programs boosted employee
-                    skills and productivity. We've achieved a 42% increase in
-                    operational efficiency."
+                    Coaching and executive education are designed around the
+                    organization’s goals and participant needs.
                   </p>
-                  <p>
-                    <strong>- Operations Manager, Retail Solutions Ltd.</strong>
-                  </p>
+                  <p></p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mb-5 p-4 bg-light rounded">
-          <h2 className="h3 mb-3 fw-bold">🎯 Industries We Serve</h2>
-          <div className="row g-2">
-            <div className="col-md-4 mb-2">
-              <span
-                className="badge bg-primary p-2"
-                style={{ fontSize: "0.9rem" }}
-              >
-                Technology & IT
-              </span>
+        <section className="public-card mb-5">
+          <div className="card-body d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <h2 className="h4 fw-bold">Discuss your organization’s needs</h2>
+              <p className="mb-0">
+                Tell us what you are working toward and we can explore a
+                relevant approach.
+              </p>
             </div>
-            <div className="col-md-4 mb-2">
-              <span
-                className="badge bg-info p-2"
-                style={{ fontSize: "0.9rem" }}
-              >
-                Finance & Banking
-              </span>
-            </div>
-            <div className="col-md-4 mb-2">
-              <span
-                className="badge bg-success p-2"
-                style={{ fontSize: "0.9rem" }}
-              >
-                Healthcare
-              </span>
-            </div>
-            <div className="col-md-4 mb-2">
-              <span
-                className="badge bg-warning p-2"
-                style={{ fontSize: "0.9rem" }}
-              >
-                Retail & E-commerce
-              </span>
-            </div>
-            <div className="col-md-4 mb-2">
-              <span
-                className="badge bg-danger p-2"
-                style={{ fontSize: "0.9rem" }}
-              >
-                Manufacturing
-              </span>
-            </div>
-            <div className="col-md-4 mb-2">
-              <span
-                className="badge bg-secondary p-2"
-                style={{ fontSize: "0.9rem" }}
-              >
-                Consulting Services
-              </span>
-            </div>
+            <Link className="btn btn-cta" to="/contact">
+              Contact our team
+            </Link>
           </div>
         </section>
       </div>

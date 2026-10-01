@@ -6,7 +6,7 @@ const objectives = [
   "Experienced Faculty",
   "Study Material",
   "Workshops / Webinars — Resume Writing, LinkedIn Mastering & Email Etiquette",
-  "100% Placement Assistance",
+  "Career preparation",
   "Job Readiness",
 ];
 
@@ -86,7 +86,9 @@ const emptyEnrollment = {
 
 function Courses() {
   const [courses, setCourses] = useState([]);
+  const [loadingCourses, setLoadingCourses] = useState(true);
   const [loadError, setLoadError] = useState("");
+  const [reloadCourses, setReloadCourses] = useState(0);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [enrollment, setEnrollment] = useState(emptyEnrollment);
   const [submitting, setSubmitting] = useState(false);
@@ -95,6 +97,7 @@ function Courses() {
 
   useEffect(() => {
     let cancelled = false;
+    setLoadingCourses(true);
 
     apiRequest("/api/courses")
       .then((payload) => {
@@ -107,12 +110,15 @@ function Courses() {
         if (!cancelled) {
           setLoadError(err.message);
         }
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingCourses(false);
       });
 
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [reloadCourses]);
 
   function openEnroll(course) {
     setSelectedCourse(course);
@@ -156,18 +162,19 @@ function Courses() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary text-white py-5 mb-5">
+      <section className="public-page-hero">
         <div className="container">
-          <h1 className="display-4 fw-bold mb-3">HR Training Programs</h1>
+          <p className="eyebrow">Professional development</p>
+          <h1 className="fw-bold mb-3">HR Training Programs</h1>
           <p className="lead">
             Comprehensive HR Courses from Entry-Level to Advanced Analytics
           </p>
         </div>
       </section>
 
-      <div className="container py-5">
+      <div className="container page-content">
         {/* Intro */}
-        <section className="py-5 p-4 bg-light rounded mb-5">
+        <section className="page-intro">
           <p className="text-info fw-bold small mb-2">
             📚 Professional Development
           </p>
@@ -181,7 +188,7 @@ function Courses() {
         </section>
 
         {/* Programme objectives */}
-        <section className="py-5 bg-info bg-opacity-10 rounded">
+        <section className="mb-5">
           <h2 className="h2 fw-bold mb-4 text-info">🎯 Programme Objectives</h2>
           <p className="mb-4 lead">
             To enable HR practical training and job-focused knowledge in the HR
@@ -266,7 +273,12 @@ function Courses() {
                     <ul className="list-unstyled">
                       {track.items.map((i) => (
                         <li key={i} className="mb-2 small">
-                          <i className="bi bi-check text-success fw-bold"></i>{" "}
+                          <span
+                            className="text-success fw-bold me-2"
+                            aria-hidden="true"
+                          >
+                            ✓
+                          </span>
                           <span>{i}</span>
                         </li>
                       ))}
@@ -319,49 +331,83 @@ function Courses() {
         >
           <h2 className="h2 fw-bold mb-4 text-info">🎓 Admissions Open</h2>
           {loadError && (
-            <div className="alert alert-danger" role="alert">
-              {loadError}
+            <div
+              className="alert alert-danger d-flex flex-wrap align-items-center justify-content-between gap-3"
+              role="alert"
+            >
+              <span>{loadError}</span>
+              <button
+                className="btn btn-sm btn-outline-danger"
+                type="button"
+                onClick={() => setReloadCourses((count) => count + 1)}
+              >
+                Try again
+              </button>
             </div>
           )}
-          <div className="row g-4 mt-1">
-            {courses.map((course) => (
-              <div className="col-md-6" key={course._id}>
-                <div
-                  className="card border-0 h-100 shadow-sm border-start border-5 border-primary hover-shadow"
-                  style={{ transition: "all 0.3s ease" }}
-                >
-                  <div className="card-body">
-                    <h5 className="card-title fw-bold mb-3 text-primary">
-                      {course.title}
-                    </h5>
-                    {course.batchStart && (
-                      <p className="card-text mb-2">
-                        <strong>📅 {course.batchStart}</strong>
-                      </p>
-                    )}
-                    {course.batchTime && (
-                      <p className="card-text small mb-4">
-                        <strong>⏰ {course.batchTime}</strong>
-                      </p>
-                    )}
-                    <button
-                      type="button"
-                      className="btn btn-primary fw-bold"
-                      onClick={() => openEnroll(course)}
-                    >
-                      Enroll Now
-                    </button>
+          {loadingCourses ? (
+            <div className="py-4 text-center" role="status">
+              <span
+                className="spinner-border spinner-border-sm text-primary me-2"
+                aria-hidden="true"
+              ></span>
+              Loading available courses...
+            </div>
+          ) : courses.length === 0 && !loadError ? (
+            <p className="empty-state mb-0">
+              There are no courses available right now. Please check back soon.
+            </p>
+          ) : (
+            <div className="row g-4 mt-1">
+              {courses.map((course) => (
+                <div className="col-md-6" key={course._id}>
+                  <div
+                    className="card border-0 h-100 shadow-sm border-start border-5 border-primary hover-shadow"
+                    style={{ transition: "all 0.3s ease" }}
+                  >
+                    <div className="card-body">
+                      <h5 className="card-title fw-bold mb-3 text-primary">
+                        {course.title}
+                      </h5>
+                      {course.description && (
+                        <p className="text-muted">{course.description}</p>
+                      )}
+                      {course.objectives?.length > 0 && (
+                        <ul className="course-objectives">
+                          {course.objectives.map((objective) => (
+                            <li key={objective}>{objective}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {course.batchStart && (
+                        <p className="card-text mb-2">
+                          <strong>📅 {course.batchStart}</strong>
+                        </p>
+                      )}
+                      {course.batchTime && (
+                        <p className="card-text small mb-4">
+                          <strong>⏰ {course.batchTime}</strong>
+                        </p>
+                      )}
+                      <button
+                        type="button"
+                        className="btn btn-primary fw-bold"
+                        onClick={() => openEnroll(course)}
+                      >
+                        Enroll Now
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* CTA Section */}
         <section className="py-5 mt-5">
           <div
-            className="alert alert-primary border-start border-5 border-primary alert-dismissible fade show"
+            className="alert alert-primary border-start border-5 border-primary"
             role="alert"
           >
             <h4 className="alert-heading fw-bold">
@@ -376,12 +422,6 @@ function Courses() {
             <a href="#admissions" className="btn btn-primary btn-lg fw-bold">
               Start Your Learning Journey Today →
             </a>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
           </div>
         </section>
       </div>
@@ -391,12 +431,16 @@ function Courses() {
           className="modal fade show d-block"
           tabIndex="-1"
           role="dialog"
+          aria-modal="true"
+          aria-labelledby="enroll-modal-title"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Enroll — {selectedCourse.title}</h5>
+                <h5 className="modal-title" id="enroll-modal-title">
+                  Enroll — {selectedCourse.title}
+                </h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -408,7 +452,9 @@ function Courses() {
               <form onSubmit={handleEnroll}>
                 <div className="modal-body">
                   {formSuccess && (
-                    <div className="alert alert-success">{formSuccess}</div>
+                    <div className="alert alert-success" role="status">
+                      {formSuccess}
+                    </div>
                   )}
                   {formError && (
                     <div className="alert alert-danger">{formError}</div>
@@ -421,6 +467,9 @@ function Courses() {
                       id="enroll-name"
                       className="form-control"
                       value={enrollment.name}
+                      minLength={2}
+                      maxLength={100}
+                      autoFocus
                       onChange={(e) =>
                         setEnrollment((prev) => ({
                           ...prev,
@@ -440,6 +489,7 @@ function Courses() {
                       type="email"
                       className="form-control"
                       value={enrollment.email}
+                      maxLength={254}
                       onChange={(e) =>
                         setEnrollment((prev) => ({
                           ...prev,
@@ -459,6 +509,7 @@ function Courses() {
                       type="tel"
                       className="form-control"
                       value={enrollment.phone}
+                      maxLength={30}
                       onChange={(e) =>
                         setEnrollment((prev) => ({
                           ...prev,
@@ -477,6 +528,7 @@ function Courses() {
                       className="form-control"
                       rows="3"
                       value={enrollment.message}
+                      maxLength={2000}
                       onChange={(e) =>
                         setEnrollment((prev) => ({
                           ...prev,

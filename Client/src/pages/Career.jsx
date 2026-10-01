@@ -10,7 +10,9 @@ const emptyApplication = {
 
 function Career() {
   const [jobs, setJobs] = useState([]);
+  const [loadingJobs, setLoadingJobs] = useState(true);
   const [loadError, setLoadError] = useState("");
+  const [reloadJobs, setReloadJobs] = useState(0);
   const [selectedJob, setSelectedJob] = useState(null);
   const [application, setApplication] = useState(emptyApplication);
   const [submitting, setSubmitting] = useState(false);
@@ -19,6 +21,7 @@ function Career() {
 
   useEffect(() => {
     let cancelled = false;
+    setLoadingJobs(true);
 
     apiRequest("/api/jobs")
       .then((payload) => {
@@ -31,12 +34,15 @@ function Career() {
         if (!cancelled) {
           setLoadError(err.message);
         }
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingJobs(false);
       });
 
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [reloadJobs]);
 
   function openApply(job) {
     setSelectedJob(job);
@@ -80,14 +86,15 @@ function Career() {
 
   return (
     <>
-      <section className="bg-info text-white py-5 mb-5">
+      <section className="public-page-hero">
         <div className="container">
-          <h1 className="display-4 fw-bold mb-3">Career Opportunities</h1>
+          <p className="eyebrow">Careers</p>
+          <h1 className="fw-bold mb-3">Career Opportunities</h1>
           <p className="lead">Join Our Innovative HR Team and Make an Impact</p>
         </div>
       </section>
 
-      <div className="container py-5">
+      <div className="container page-content">
         <section className="mb-5">
           <h2 className="h3 mb-3 fw-bold">💼 Join Our Talented Team</h2>
           <p className="lead">
@@ -100,72 +107,81 @@ function Career() {
         <section className="mb-5">
           <h2 className="h3 mb-4 fw-bold">💼 Current Openings</h2>
           {loadError && (
-            <div className="alert alert-danger" role="alert">
-              {loadError}
+            <div
+              className="alert alert-danger d-flex flex-wrap align-items-center justify-content-between gap-3"
+              role="alert"
+            >
+              <span>{loadError}</span>
+              <button
+                className="btn btn-sm btn-outline-danger"
+                type="button"
+                onClick={() => setReloadJobs((count) => count + 1)}
+              >
+                Try again
+              </button>
             </div>
           )}
 
-          <div className="row">
-            {jobs.map((job) => (
-              <div className="col-md-6 mb-4" key={job._id}>
-                <div
-                  className={`card border-0 shadow-sm h-100 border-top border-5 border-${job.displayColor || "info"}`}
-                  style={{ transition: "all 0.3s ease" }}
-                >
-                  <div className="card-body">
-                    <h5
-                      className={`card-title text-${job.displayColor || "info"} fw-bold`}
-                    >
-                      {job.title}
-                    </h5>
+          {loadingJobs ? (
+            <div className="py-4 text-center" role="status">
+              <span
+                className="spinner-border spinner-border-sm text-primary me-2"
+                aria-hidden="true"
+              ></span>
+              Loading current openings...
+            </div>
+          ) : jobs.length === 0 && !loadError ? (
+            <p className="empty-state">
+              There are no open positions right now. Please check back later.
+            </p>
+          ) : (
+            <div className="row g-4">
+              {jobs.map((job) => (
+                <div className="col-md-6 mb-4" key={job._id}>
+                  <div
+                    className={`card border-0 shadow-sm h-100 border-top border-5 border-${job.displayColor || "info"}`}
+                    style={{ transition: "all 0.3s ease" }}
+                  >
+                    <div className="card-body">
+                      <h5
+                        className={`card-title text-${job.displayColor || "info"} fw-bold`}
+                      >
+                        {job.title}
+                      </h5>
 
-                    <p className="card-text small">
-                      <strong>Experience:</strong> {job.experience}
-                    </p>
+                      {job.location && (
+                        <p className="job-meta">{job.location}</p>
+                      )}
+                      {job.employmentType && (
+                        <p className="job-meta">{job.employmentType}</p>
+                      )}
+                      {job.experience && (
+                        <p className="card-text small">
+                          <strong>Experience:</strong> {job.experience}
+                        </p>
+                      )}
 
-                    <p className="card-text">{job.description}</p>
+                      <p className="card-text">{job.description}</p>
 
-                    <p className="text-muted small">
-                      <strong>Skills:</strong> {job.skills}
-                    </p>
+                      {job.skills && (
+                        <p className="text-muted small">
+                          <strong>Skills:</strong> {job.skills}
+                        </p>
+                      )}
 
-                    <button
-                      type="button"
-                      className={`btn btn-${job.displayColor || "info"} btn-sm`}
-                      onClick={() => openApply(job)}
-                    >
-                      Apply Now
-                    </button>
+                      <button
+                        type="button"
+                        className={`btn btn-${job.displayColor || "info"} btn-sm`}
+                        onClick={() => openApply(job)}
+                      >
+                        Apply Now
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-5 p-4 bg-light rounded">
-          <h2 className="h3 mb-3 fw-bold">🌟 Why Join Us?</h2>
-
-          <ul className="list-group list-group-flush bg-transparent">
-            <li className="list-group-item bg-transparent">
-              ✓ Competitive salary and performance bonuses
-            </li>
-            <li className="list-group-item bg-transparent">
-              ✓ Comprehensive health and wellness benefits
-            </li>
-            <li className="list-group-item bg-transparent">
-              ✓ Professional development and training opportunities
-            </li>
-            <li className="list-group-item bg-transparent">
-              ✓ Flexible work arrangements and remote options
-            </li>
-            <li className="list-group-item bg-transparent">
-              ✓ Collaborative and inclusive work culture
-            </li>
-            <li className="list-group-item bg-transparent">
-              ✓ Career growth and advancement opportunities
-            </li>
-          </ul>
+              ))}
+            </div>
+          )}
         </section>
       </div>
 
@@ -174,12 +190,16 @@ function Career() {
           className="modal fade show d-block"
           tabIndex="-1"
           role="dialog"
+          aria-modal="true"
+          aria-labelledby="apply-modal-title"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Apply — {selectedJob.title}</h5>
+                <h5 className="modal-title" id="apply-modal-title">
+                  Apply — {selectedJob.title}
+                </h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -191,7 +211,9 @@ function Career() {
               <form onSubmit={handleApply}>
                 <div className="modal-body">
                   {formSuccess && (
-                    <div className="alert alert-success">{formSuccess}</div>
+                    <div className="alert alert-success" role="status">
+                      {formSuccess}
+                    </div>
                   )}
                   {formError && (
                     <div className="alert alert-danger">{formError}</div>
@@ -204,6 +226,9 @@ function Career() {
                       id="apply-name"
                       className="form-control"
                       value={application.name}
+                      minLength={2}
+                      maxLength={100}
+                      autoFocus
                       onChange={(e) =>
                         setApplication((prev) => ({
                           ...prev,
@@ -223,6 +248,7 @@ function Career() {
                       type="email"
                       className="form-control"
                       value={application.email}
+                      maxLength={254}
                       onChange={(e) =>
                         setApplication((prev) => ({
                           ...prev,
@@ -242,6 +268,7 @@ function Career() {
                       type="tel"
                       className="form-control"
                       value={application.phone}
+                      maxLength={30}
                       onChange={(e) =>
                         setApplication((prev) => ({
                           ...prev,
@@ -260,6 +287,7 @@ function Career() {
                       className="form-control"
                       rows="4"
                       value={application.coverLetter}
+                      maxLength={4000}
                       onChange={(e) =>
                         setApplication((prev) => ({
                           ...prev,

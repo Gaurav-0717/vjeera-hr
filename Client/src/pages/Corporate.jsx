@@ -56,17 +56,18 @@ function Corporate() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-success text-white py-5 mb-5">
+      <section className="public-page-hero">
         <div className="container">
-          <h1 className="display-4 fw-bold mb-3">Corporate Solutions</h1>
+          <p className="eyebrow">For organizations</p>
+          <h1 className="fw-bold mb-3">Corporate Solutions</h1>
           <p className="lead">
             Transform Your Organization with Strategic HR Solutions
           </p>
         </div>
       </section>
 
-      <div className="container py-5">
-        <section className="mb-5 p-4 bg-light rounded">
+      <div className="container page-content">
+        <section className="page-intro">
           <h2 className="h3 mb-3 fw-bold text-success">
             🏢 Enterprise HR Solutions
           </h2>
@@ -196,7 +197,7 @@ function Corporate() {
           </p>
         </section>
 
-        <section className="mb-5 p-4 bg-light rounded">
+        <section className="contact-form-card">
           <h2 className="h3 mb-3 fw-bold text-success">
             Request a Corporate Consultation
           </h2>
@@ -205,7 +206,7 @@ function Corporate() {
             will get back to you.
           </p>
           {success && (
-            <div className="alert alert-success" role="alert">
+            <div className="alert alert-success" role="status">
               Thank you. Your corporate enquiry has been received.
             </div>
           )}
@@ -225,6 +226,7 @@ function Corporate() {
                   className="form-control"
                   value={form.companyName}
                   onChange={handleChange}
+                  maxLength={150}
                   required
                   disabled={loading}
                 />
@@ -238,6 +240,7 @@ function Corporate() {
                   className="form-control"
                   value={form.contactName}
                   onChange={handleChange}
+                  maxLength={100}
                   required
                   disabled={loading}
                 />
@@ -252,6 +255,7 @@ function Corporate() {
                   className="form-control"
                   value={form.email}
                   onChange={handleChange}
+                  maxLength={254}
                   required
                   disabled={loading}
                 />
@@ -266,6 +270,7 @@ function Corporate() {
                   className="form-control"
                   value={form.phone}
                   onChange={handleChange}
+                  maxLength={30}
                   disabled={loading}
                 />
               </div>
@@ -297,6 +302,7 @@ function Corporate() {
                   className="form-control"
                   value={form.employeeCount}
                   onChange={handleChange}
+                  maxLength={50}
                   disabled={loading}
                 />
               </div>
@@ -310,13 +316,14 @@ function Corporate() {
                   rows="4"
                   value={form.message}
                   onChange={handleChange}
+                  maxLength={2000}
                   disabled={loading}
                 ></textarea>
               </div>
             </div>
             <button
               type="submit"
-              className="btn btn-success fw-bold mt-4"
+              className="btn btn-cta mt-4"
               disabled={loading}
             >
               {loading ? "Submitting..." : "Submit enquiry"}

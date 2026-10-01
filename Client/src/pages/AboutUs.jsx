@@ -2,17 +2,18 @@ function AboutUs() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-success text-white py-5 mb-5">
+      <section className="public-page-hero">
         <div className="container">
-          <h1 className="display-4 fw-bold mb-3">About Vjeera HR</h1>
+          <p className="eyebrow">Who we are</p>
+          <h1 className="fw-bold mb-3">About Vjeera HR</h1>
           <p className="lead">
             Transforming Organizations Through Strategic HR Solutions
           </p>
         </div>
       </section>
 
-      <div className="container py-5">
-        <section className="mb-5 p-4 bg-light rounded">
+      <div className="container page-content">
+        <section className="page-intro">
           <h2 className="h3 mb-3 text-info fw-bold">🎯 Our Mission</h2>
           <p className="lead">
             Our mission is to empower organizations and individuals through
@@ -24,29 +25,26 @@ function AboutUs() {
           </p>
         </section>
 
-        <section className="mb-5 p-4 bg-info bg-opacity-10 rounded">
-          <h2 className="h3 mb-3 text-success fw-bold">👁️ Our Vision</h2>
-          <p className="lead">
-            To be a trusted and innovative HR partner that empowers
-            organizations and individuals to achieve their full potential. We
-            envision creating a future where the right talent, opportunities,
-            and organizational strategies come together to build productive,
-            inclusive, and successful workplaces.
-          </p>
+        <section className="public-card mb-5">
+          <div className="card-body">
+            <h2 className="h3 mb-3 text-success fw-bold">👁️ Our Vision</h2>
+            <p className="lead">
+              To be a trusted and innovative HR partner that empowers
+              organizations and individuals to achieve their full potential. We
+              envision creating a future where the right talent, opportunities,
+              and organizational strategies come together to build productive,
+              inclusive, and successful workplaces.
+            </p>
+          </div>
         </section>
 
         <section className="mb-5">
           <h2 className="h3 mb-3">Our Story</h2>
           <p>
-            Founded in 2015, Vjeera HR has been a catalyst for organizational
-            transformation. With over 8 years of industry expertise, we've
-            partnered with 500+ organizations across various sectors to build
-            high-performing teams and create thriving workplaces.
-          </p>
-          <p>
-            Our journey began with a simple vision: to revolutionize HR
-            practices and help businesses unlock their full potential through
-            strategic human resource management.
+            Vjeera brings together practical HR learning, leadership development
+            and people-focused services. Our work is guided by a commitment to
+            useful skills, thoughtful partnerships and lasting professional
+            growth.
           </p>
         </section>
 
@@ -54,7 +52,7 @@ function AboutUs() {
           <h2 className="h3 mb-3 fw-bold">💎 Our Core Values</h2>
           <div className="row">
             <div className="col-md-6 mb-3">
-              <div className="card border-0 shadow-sm h-100 border-start border-5 border-info">
+              <div className="public-card">
                 <div className="card-body">
                   <h5 className="card-title text-info fw-bold">Integrity</h5>
                   <p className="card-text">
@@ -65,7 +63,7 @@ function AboutUs() {
               </div>
             </div>
             <div className="col-md-6 mb-3">
-              <div className="card border-0 shadow-sm h-100 border-start border-5 border-success">
+              <div className="public-card">
                 <div className="card-body">
                   <h5 className="card-title text-success fw-bold">
                     Innovation
@@ -77,7 +75,7 @@ function AboutUs() {
               </div>
             </div>
             <div className="col-md-6 mb-3">
-              <div className="card border-0 shadow-sm h-100 border-start border-5 border-warning">
+              <div className="public-card">
                 <div className="card-body">
                   <h5 className="card-title text-warning fw-bold">
                     Excellence
@@ -90,7 +88,7 @@ function AboutUs() {
               </div>
             </div>
             <div className="col-md-6 mb-3">
-              <div className="card border-0 shadow-sm h-100 border-start border-5 border-danger">
+              <div className="public-card">
                 <div className="card-body">
                   <h5 className="card-title text-danger fw-bold">
                     Partnership

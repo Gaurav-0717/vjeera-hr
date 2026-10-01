@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
   clearAdminSession,
@@ -7,7 +7,8 @@ import {
 } from "../../api.js";
 
 const links = [
-  { to: "/admin", label: "Dashboard", end: true },
+  { to: "/admin/dashboard", label: "Dashboard", end: true },
+  { to: "/admin/records", label: "Records" },
   { to: "/admin/contacts", label: "Contacts" },
   { to: "/admin/enrollments", label: "Enrollments" },
   { to: "/admin/applications", label: "Applications" },
@@ -36,12 +37,17 @@ function AdminLayout() {
   }
 
   return (
-    <div className="min-vh-100 bg-light">
-      <nav className="navbar navbar-dark bg-dark">
+    <div className="admin-shell">
+      <nav className="navbar navbar-dark admin-header">
         <div className="container-fluid">
-          <span className="navbar-brand mb-0 h1">Vjeera HR Admin</span>
+          <Link className="navbar-brand mb-0 h1" to="/">
+            Vjeera HR Admin
+          </Link>
           <div className="d-flex align-items-center gap-3">
             <span className="text-white-50 small">{admin?.email}</span>
+            <Link className="btn btn-outline-light btn-sm" to="/">
+              View website
+            </Link>
             <button
               type="button"
               className="btn btn-outline-light btn-sm"
@@ -54,8 +60,11 @@ function AdminLayout() {
       </nav>
       <div className="container-fluid py-4">
         <div className="row g-4">
-          <div className="col-md-3 col-lg-2">
-            <div className="list-group">
+          <div className="col-12 col-lg-2">
+            <nav
+              className="list-group admin-nav-list"
+              aria-label="Admin navigation"
+            >
               {links.map((link) => (
                 <NavLink
                   key={link.to}
@@ -68,11 +77,11 @@ function AdminLayout() {
                   {link.label}
                 </NavLink>
               ))}
-            </div>
+            </nav>
           </div>
-          <div className="col-md-9 col-lg-10">
+          <main className="col-12 col-lg-10 admin-content">
             <Outlet />
-          </div>
+          </main>
         </div>
       </div>
     </div>
