@@ -1,0 +1,328 @@
+:root {
+  --navy: #14283f;
+  --navy-soft: #1f3a5c;
+  --teal: #2bb4c9;
+  --teal-deep: #1d8fa1;
+  --coral: #f0a8b4;
+  --cream: #faf8f5;
+  --ink: #1f2937;
+  --ink-soft: #5b6470;
+  --white: #ffffff;
+
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream);
+}
+
+h1, h2, h3, .brand-name, .hero-card-stat {
+  font-family: var(--font-display);
+}
+
+a { text-decoration: none; }
+
+/* ---------- Header ---------- */
+.brand-bar {
+  background: linear-gradient(120deg, var(--teal) 0%, var(--teal-deep) 100%);
+  color: var(--white);
+}
+.brand-name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.brand-tagline {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-family: var(--font-body);
+}
+.nav-strip {
+  background: var(--navy);
+}
+.nav-strip .nav-link {
+  color: rgba(255,255,255,0.78);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.9rem 1rem;
+  transition: color 0.15s ease;
+}
+.nav-strip .nav-link:hover,
+.nav-strip .nav-link.active {
+  color: var(--coral);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--navy);
+  color: var(--white);
+  padding: 5rem 0 4.5rem;
+}
+.eyebrow {
+  color: var(--coral);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+  line-height: 1.12;
+  margin-bottom: 1.25rem;
+}
+.hero-sub {
+  color: rgba(255,255,255,0.78);
+  font-size: 1.05rem;
+  max-width: 42rem;
+  margin-bottom: 2rem;
+}
+.btn-cta {
+  background: var(--coral);
+  border: none;
+  color: var(--navy);
+  font-weight: 700;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+}
+.btn-cta:hover { background: #eb919f; color: var(--navy); }
+.btn-outline-cta {
+  border: 1.5px solid rgba(255,255,255,0.5);
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+}
+.btn-outline-cta:hover { border-color: var(--teal); color: var(--teal); }
+
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 1.1rem;
+  padding: 2rem;
+}
+.hero-card hr { border-color: rgba(255,255,255,0.18); margin: 1.25rem 0; }
+.hero-card-stat {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+}
+.hero-card-label {
+  color: rgba(255,255,255,0.75);
+  margin-top: 0.35rem;
+  font-size: 0.92rem;
+}
+
+/* ---------- Sections ---------- */
+.section { padding: 4rem 0; }
+.section-alt { background: var(--white); }
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.section-body {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  max-width: 52rem;
+}
+
+/* ---------- Tiles (Vision / Values) ---------- */
+.tile {
+  border-radius: 1rem;
+  padding: 1.75rem;
+  height: 100%;
+  color: var(--white);
+}
+.tile-navy { background: var(--navy); }
+.tile-teal { background: linear-gradient(120deg, var(--teal), var(--teal-deep)); }
+.tile-title { font-family: var(--font-display); font-weight: 700; margin-bottom: 0.5rem; }
+.tile-body { margin: 0; opacity: 0.92; }
+
+/* ---------- Focus areas ---------- */
+.focus-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: var(--white);
+  border: 1px solid #e7e2da;
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  height: 100%;
+  font-weight: 500;
+}
+.focus-index {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--coral);
+  font-size: 1.1rem;
+}
+
+/* ---------- Quote ---------- */
+.quote-block {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: var(--navy);
+  border-left: 4px solid var(--teal);
+  padding-left: 1.5rem;
+  max-width: 48rem;
+  margin: 0;
+}
+
+/* ---------- Objectives ---------- */
+.objective-item {
+  background: var(--cream);
+  border: 1px solid #e7e2da;
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  height: 100%;
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+
+/* ---------- Career path (signature element) ---------- */
+.path-track {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.path-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--white);
+  border: 1px solid #e7e2da;
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+}
+.path-dot {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.path-step:nth-child(3) .path-dot { background: var(--teal-deep); }
+.path-step:nth-child(5) .path-dot { background: var(--coral); color: var(--navy); }
+.path-label {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+.path-connector {
+  flex: 1 0 2rem;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #cfc8bb 0, #cfc8bb 6px, transparent 6px, transparent 12px);
+  min-width: 2rem;
+}
+
+/* ---------- Course cards ---------- */
+.course-card {
+  background: var(--white);
+  border: 1px solid #e7e2da;
+  border-radius: 1rem;
+  padding: 1.75rem;
+}
+.course-card-teal {
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+}
+.course-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: inherit;
+}
+.course-card-tools {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+}
+.course-list {
+  padding-left: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+.course-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.93rem;
+  opacity: 0.9;
+}
+.course-card-footer {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--coral);
+  margin: 0;
+}
+
+/* ---------- Batches ---------- */
+.batch-item {
+  background: var(--white);
+  border-left: 4px solid var(--teal);
+  border-radius: 0.6rem;
+  padding: 1.1rem 1.25rem;
+}
+.batch-name { font-weight: 700; color: var(--navy); }
+.batch-start { color: var(--teal-deep); font-weight: 600; font-size: 0.92rem; margin-top: 0.25rem; }
+.batch-time { color: var(--ink-soft); font-size: 0.88rem; }
+
+/* ---------- Contact ---------- */
+.contact-detail { margin-top: 1.25rem; }
+.contact-detail-label {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+.contact-form-card {
+  background: var(--white);
+  border-radius: 1rem;
+  border: 1px solid #e7e2da;
+  padding: 2rem;
+}
+.form-label { font-weight: 600; color: var(--navy); font-size: 0.92rem; }
+.form-control:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 0.2rem rgba(43, 180, 201, 0.2);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.75);
+}
+.footer-brand { color: var(--white); font-weight: 700; font-family: var(--font-display); }
+.footer-line { font-size: 0.92rem; }
+.footer-copy { font-size: 0.8rem; opacity: 0.7; }
