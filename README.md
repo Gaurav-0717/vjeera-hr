@@ -4,6 +4,8 @@ A modern full-stack **Human Resources, Recruitment, Training, and Corporate Serv
 
 Vjeera HR provides a professional public-facing website for HR and corporate services along with a secure admin panel for managing **jobs, courses, applications, enrollments, contact enquiries, and corporate enquiries**.
 
+The project demonstrates a complete full-stack workflow including **REST APIs, MongoDB database management, JWT authentication, role-based access control, request validation, security middleware, responsive UI, and cloud deployment**.
+
 ---
 
 ## 🚀 Live Deployment
@@ -22,90 +24,157 @@ https://vjeera-hr.onrender.com
 
 https://vjeera-hr.onrender.com/api/health
 
+### 🔐 Admin Login
+
+https://vjeera-hr.vercel.app/admin/login
+
 ---
 
-## ✨ Features
+# 📌 Project Overview
 
-### 👥 Public Website
+Vjeera HR is designed as a centralized digital platform for an HR and corporate services organization.
 
-- Professional responsive homepage
-- About Us section
-- HR and recruitment services
-- Training and courses section
-- Career and job opportunities
-- Corporate services
-- Client section
-- Contact form
-- Corporate enquiry form
-- Course enrollment
-- Job application submission
-- Responsive design for desktop, tablet, and mobile devices
+The system has two major parts:
 
-### 🔐 Admin Panel
+### Public Platform
 
-Secure admin authentication using **JWT**.
+Visitors can:
 
-Administrators can:
+- Explore HR services
+- View available courses
+- Browse job opportunities
+- Apply for jobs
+- Enroll in courses
+- Submit contact enquiries
+- Submit corporate enquiries
+- View company/client information
 
-- Login securely
+### Admin Platform
+
+Authorized administrators can:
+
+- Securely login
 - View dashboard statistics
-- Manage job postings
-- Create, update, and delete jobs
+- Manage jobs
 - Manage courses
-- Create, update, and delete courses
-- View job applications
+- View applications
 - View course enrollments
 - View contact enquiries
 - View corporate enquiries
+- Monitor submitted records
 - Logout securely
-
-### 🛡️ Security
-
-The backend includes:
-
-- JWT-based authentication
-- Password hashing using bcrypt
-- Protected admin routes
-- Request validation
-- Rate limiting for login
-- Helmet security headers
-- CORS configuration
-- Environment-based configuration
-- MongoDB data validation
-- Centralized error handling
-- Sensitive credentials excluded from Git
 
 ---
 
-## 🏗️ Project Architecture
+# 🎯 Project Objectives
+
+The main objectives of Vjeera HR are:
+
+- Digitize HR and recruitment operations
+- Provide a professional online presence
+- Centralize job and course management
+- Simplify job application submission
+- Simplify course enrollment
+- Manage enquiries through a centralized dashboard
+- Provide secure administrator access
+- Store application and enquiry data in MongoDB
+- Build a scalable full-stack architecture
+- Deploy the complete application to cloud platforms
+
+---
+
+# ✨ Features
+
+## 👥 Public Website
+
+### 🏠 Home
+
+- Professional landing page
+- Company introduction
+- Services overview
+- Course and career highlights
+- Responsive layout
+- Clear navigation and calls-to-action
+
+### ℹ️ About Us
+
+Provides information about the organization and its purpose.
+
+### 🛠️ Services
+
+Displays HR and corporate services offered by the organization.
+
+### 📚 Courses
+
+Visitors can:
+
+- View available courses
+- Read course information
+- View course details
+- Submit enrollment requests
+
+### 💼 Careers
+
+Visitors can:
+
+- Browse available job openings
+- View job descriptions
+- View experience requirements
+- Submit job applications
+
+### 🏢 Corporate
+
+Provides corporate service information and allows organizations/users to submit enquiries.
+
+### 🤝 Our Clients
+
+Displays client-related information in a professional layout.
+
+### 📩 Contact
+
+Visitors can submit contact enquiries through the website.
+
+---
+
+# 🔐 Admin Panel
+
+The application includes a protected administrator dashboard.
+
+## Admin Authentication
+
+Admin authentication uses:
+
+- JWT
+- bcrypt password hashing
+- Protected API routes
+- Session-based token storage
+- Login rate limiting
+
+### Admin Login Flow
 
 ```text
-Vjeera HR
-│
-├── Client/                    # React + Vite Frontend
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── api.js
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── .env
-│   ├── .env.example
-│   ├── vercel.json
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/                    # Express + MongoDB Backend
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── scripts/
-│   ├── utils/
-│   ├── server.js
-│   ├── .env
-│   └── package.json
-│
-├── .gitignore
-└── README.md
+Admin
+   │
+   ▼
+Login Page
+   │
+   ▼
+POST /api/auth/login
+   │
+   ▼
+Validate Request
+   │
+   ▼
+Find Admin in MongoDB
+   │
+   ▼
+Compare Password using bcrypt
+   │
+   ▼
+Generate JWT
+   │
+   ▼
+Store Authentication Token
+   │
+   ▼
+Access Protected Admin Routes
