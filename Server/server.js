@@ -23,6 +23,15 @@ dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    service: "Vjeera HR API",
+    status: "running",
+    message: "Backend API is running successfully",
+  });
+});
+
 app.use(helmet());
 
 app.use(
