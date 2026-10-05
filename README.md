@@ -1,120 +1,111 @@
 # Vjeera HR
 
-A modern full-stack Human Resources, Recruitment, Training, and Corporate Services platform built with React, Node.js, Express, and MongoDB.
+A modern full-stack **Human Resources, Recruitment, Training, and Corporate Services Platform** built with **React, Node.js, Express.js, and MongoDB**.
 
-Vjeera HR provides a professional public-facing website for HR services while also providing an authenticated admin panel for managing job openings, courses, applications, enrollments, contact enquiries, and corporate enquiries.
-
----
-
-## 🚀 Live Project
-
-Frontend: Add your deployed frontend URL here
-
-Backend API: Add your deployed backend URL here
-
-GitHub Repository:
-https://github.com/Gaurav-0717/vjeera-hr
+Vjeera HR provides a professional public-facing website for HR and corporate services along with a secure admin panel for managing **jobs, courses, applications, enrollments, contact enquiries, and corporate enquiries**.
 
 ---
 
-## 📌 Project Overview
+## 🚀 Live Deployment
 
-Vjeera HR is designed as a complete HR management and corporate services platform.
+### 🌐 Frontend
 
-The system has two major areas:
+**Live Website:**  
+https://vjeera-hr.vercel.app
 
-### Public Website
+### ⚙️ Backend API
 
-Visitors can:
+**Live Backend:**  
+https://vjeera-hr.onrender.com
 
-- Explore HR services
-- Learn about the organization
-- Browse available courses
-- Enroll in courses
-- Browse job opportunities
-- Apply for jobs
-- Submit corporate enquiries
-- Contact the organization
-- View client information
+### ❤️ Backend Health Check
 
-### Admin Panel
+https://vjeera-hr.onrender.com/api/health
 
-Authenticated administrators can:
+---
+
+## ✨ Features
+
+### 👥 Public Website
+
+- Professional responsive homepage
+- About Us section
+- HR and recruitment services
+- Training and courses section
+- Career and job opportunities
+- Corporate services
+- Client section
+- Contact form
+- Corporate enquiry form
+- Course enrollment
+- Job application submission
+- Responsive design for desktop, tablet, and mobile devices
+
+### 🔐 Admin Panel
+
+Secure admin authentication using **JWT**.
+
+Administrators can:
 
 - Login securely
-- View dashboard information
-- Manage job openings
+- View dashboard statistics
+- Manage job postings
+- Create, update, and delete jobs
 - Manage courses
-- View contact submissions
-- Manage course enrollments
-- Review job applications
-- Manage corporate enquiries
-- Update application/enquiry statuses
+- Create, update, and delete courses
+- View job applications
+- View course enrollments
+- View contact enquiries
+- View corporate enquiries
 - Logout securely
 
----
+### 🛡️ Security
 
-# ✨ Features
+The backend includes:
 
-## 🌐 Public Website
-
-### Home
-Professional landing page introducing Vjeera HR and its services.
-
-### About Us
-Provides information about the organization and its purpose.
-
-### Services
-Displays the HR and corporate services offered by the organization.
-
-### Courses
-Displays available training courses retrieved from the backend.
-
-Users can:
-
-- Browse courses
-- View course information
-- Submit enrollment requests
-
-### Career
-
-Displays available job opportunities from the backend.
-
-Users can:
-
-- Browse open positions
-- View job details
-- Apply for positions
-
-### Corporate
-
-Provides corporate services and an enquiry form for organizations.
-
-### Our Clients
-
-Displays available client/company information without relying on fabricated statistics or testimonials.
-
-### Contact
-
-Provides a contact form for visitors to submit enquiries.
+- JWT-based authentication
+- Password hashing using bcrypt
+- Protected admin routes
+- Request validation
+- Rate limiting for login
+- Helmet security headers
+- CORS configuration
+- Environment-based configuration
+- MongoDB data validation
+- Centralized error handling
+- Sensitive credentials excluded from Git
 
 ---
 
-# 🔐 Admin Authentication
-
-Vjeera HR includes an administrator authentication system using JWT.
-
-### Authentication Flow
+## 🏗️ Project Architecture
 
 ```text
-Admin
-  ↓
-Admin Login
-  ↓
-POST /api/auth/login
-  ↓
-JWT Token
-  ↓
-Protected Admin Routes
-  ↓
-Admin Dashboard
+Vjeera HR
+│
+├── Client/                    # React + Vite Frontend
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── api.js
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── .env
+│   ├── .env.example
+│   ├── vercel.json
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/                    # Express + MongoDB Backend
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── scripts/
+│   ├── utils/
+│   ├── server.js
+│   ├── .env
+│   └── package.json
+│
+├── .gitignore
+└── README.md
