@@ -433,14 +433,25 @@ function Courses() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="enroll-modal-title"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+          style={{ backgroundColor: "rgba(15, 23, 42, 0.65)", backdropFilter: "blur(4px)" }}
         >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="enroll-modal-title">
-                  Enroll — {selectedCourse.title}
-                </h5>
+          <div className="modal-dialog modal-dialog-centered modal-lg">
+            <div className="modal-content border-0 shadow-lg" style={{ borderRadius: "14px", overflow: "hidden" }}>
+              <div className="modal-header bg-light px-4 py-3 border-bottom">
+                <div>
+                  <span className="badge bg-primary bg-opacity-10 text-primary fw-semibold px-2 py-1 mb-1" style={{ fontSize: "0.72rem" }}>
+                    Course Enrollment
+                  </span>
+                  <h5 className="modal-title fw-bold text-dark mb-0" id="enroll-modal-title">
+                    Enroll in {selectedCourse.title}
+                  </h5>
+                  {(selectedCourse.batchStart || selectedCourse.batchTime) && (
+                    <div className="text-muted small mt-1">
+                      {selectedCourse.batchStart && <span className="me-2">📅 Batch: {selectedCourse.batchStart}</span>}
+                      {selectedCourse.batchTime && <span>⏰ {selectedCourse.batchTime}</span>}
+                    </div>
+                  )}
+                </div>
                 <button
                   type="button"
                   className="btn-close"
@@ -449,100 +460,122 @@ function Courses() {
                   disabled={submitting}
                 ></button>
               </div>
+
               <form onSubmit={handleEnroll}>
-                <div className="modal-body">
+                <div className="modal-body p-4">
                   {formSuccess && (
-                    <div className="alert alert-success" role="status">
-                      {formSuccess}
+                    <div className="alert alert-success d-flex align-items-center gap-2 mb-4" role="status">
+                      <span className="fs-5">✓</span>
+                      <div>
+                        <strong>Enrollment received!</strong>
+                        <div className="small">{formSuccess}</div>
+                      </div>
                     </div>
                   )}
                   {formError && (
-                    <div className="alert alert-danger">{formError}</div>
+                    <div className="alert alert-danger d-flex align-items-center gap-2 mb-4" role="alert">
+                      <span className="fs-5">⚠️</span>
+                      <div>{formError}</div>
+                    </div>
                   )}
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="enroll-name">
-                      Name
-                    </label>
-                    <input
-                      id="enroll-name"
-                      className="form-control"
-                      value={enrollment.name}
-                      minLength={2}
-                      maxLength={100}
-                      autoFocus
-                      onChange={(e) =>
-                        setEnrollment((prev) => ({
-                          ...prev,
-                          name: e.target.value,
-                        }))
-                      }
-                      required
-                      disabled={submitting}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="enroll-email">
-                      Email
-                    </label>
-                    <input
-                      id="enroll-email"
-                      type="email"
-                      className="form-control"
-                      value={enrollment.email}
-                      maxLength={254}
-                      onChange={(e) =>
-                        setEnrollment((prev) => ({
-                          ...prev,
-                          email: e.target.value,
-                        }))
-                      }
-                      required
-                      disabled={submitting}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="enroll-phone">
-                      Phone
-                    </label>
-                    <input
-                      id="enroll-phone"
-                      type="tel"
-                      className="form-control"
-                      value={enrollment.phone}
-                      maxLength={30}
-                      onChange={(e) =>
-                        setEnrollment((prev) => ({
-                          ...prev,
-                          phone: e.target.value,
-                        }))
-                      }
-                      disabled={submitting}
-                    />
-                  </div>
-                  <div className="mb-0">
-                    <label className="form-label" htmlFor="enroll-message">
-                      Message
-                    </label>
-                    <textarea
-                      id="enroll-message"
-                      className="form-control"
-                      rows="3"
-                      value={enrollment.message}
-                      maxLength={2000}
-                      onChange={(e) =>
-                        setEnrollment((prev) => ({
-                          ...prev,
-                          message: e.target.value,
-                        }))
-                      }
-                      disabled={submitting}
-                    ></textarea>
+
+                  <div className="row g-3">
+                    <div className="col-12 col-md-6">
+                      <label className="form-label fw-semibold text-dark small" htmlFor="enroll-name">
+                        Student Full Name <span className="text-danger">*</span>
+                      </label>
+                      <input
+                        id="enroll-name"
+                        className="form-control"
+                        placeholder="e.g. Priya Nair"
+                        value={enrollment.name}
+                        minLength={2}
+                        maxLength={100}
+                        autoFocus
+                        onChange={(e) =>
+                          setEnrollment((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
+                        required
+                        disabled={submitting}
+                      />
+                    </div>
+
+                    <div className="col-12 col-md-6">
+                      <label className="form-label fw-semibold text-dark small" htmlFor="enroll-email">
+                        Email Address <span className="text-danger">*</span>
+                      </label>
+                      <input
+                        id="enroll-email"
+                        type="email"
+                        className="form-control"
+                        placeholder="e.g. priya.nair@example.com"
+                        value={enrollment.email}
+                        maxLength={254}
+                        onChange={(e) =>
+                          setEnrollment((prev) => ({
+                            ...prev,
+                            email: e.target.value,
+                          }))
+                        }
+                        required
+                        disabled={submitting}
+                      />
+                    </div>
+
+                    <div className="col-12">
+                      <label className="form-label fw-semibold text-dark small" htmlFor="enroll-phone">
+                        Contact Phone Number
+                      </label>
+                      <input
+                        id="enroll-phone"
+                        type="tel"
+                        className="form-control"
+                        placeholder="e.g. +91 98765 12345"
+                        value={enrollment.phone}
+                        maxLength={30}
+                        onChange={(e) =>
+                          setEnrollment((prev) => ({
+                            ...prev,
+                            phone: e.target.value,
+                          }))
+                        }
+                        disabled={submitting}
+                      />
+                      <div className="form-text text-muted" style={{ fontSize: "0.78rem" }}>
+                        Our academy counselor will reach out via phone/WhatsApp with batch details.
+                      </div>
+                    </div>
+
+                    <div className="col-12">
+                      <label className="form-label fw-semibold text-dark small" htmlFor="enroll-message">
+                        Learning Goals & Queries (Optional)
+                      </label>
+                      <textarea
+                        id="enroll-message"
+                        className="form-control"
+                        rows="3"
+                        placeholder="Any specific questions regarding curriculum, weekday vs weekend schedule, or career mentorship..."
+                        value={enrollment.message}
+                        maxLength={2000}
+                        onChange={(e) =>
+                          setEnrollment((prev) => ({
+                            ...prev,
+                            message: e.target.value,
+                          }))
+                        }
+                        disabled={submitting}
+                      ></textarea>
+                    </div>
                   </div>
                 </div>
-                <div className="modal-footer">
+
+                <div className="modal-footer bg-light px-4 py-3 border-top d-flex justify-content-between align-items-center">
                   <button
                     type="button"
-                    className="btn btn-outline-secondary"
+                    className="btn btn-outline-secondary px-3"
                     onClick={closeEnroll}
                     disabled={submitting}
                   >
@@ -550,10 +583,17 @@ function Courses() {
                   </button>
                   <button
                     type="submit"
-                    className="btn btn-primary fw-bold"
+                    className="btn btn-primary fw-bold px-4"
                     disabled={submitting}
                   >
-                    {submitting ? "Submitting..." : "Submit enrollment"}
+                    {submitting ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />
+                        Submitting Enrollment...
+                      </>
+                    ) : (
+                      "Confirm & Submit Enrollment"
+                    )}
                   </button>
                 </div>
               </form>

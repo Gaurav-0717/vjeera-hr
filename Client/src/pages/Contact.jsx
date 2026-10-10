@@ -70,108 +70,129 @@ function Contact() {
           </div>
 
           <div className="col-lg-7">
-            <div className="contact-form-card">
+            <div className="contact-form-card shadow-sm border" style={{ borderRadius: "14px" }}>
+              <h2 className="h4 fw-bold text-dark mb-1">Send Us a Message</h2>
+              <p className="text-muted small mb-4">
+                Fill in the details below and an HR consultant will get in touch with you shortly.
+              </p>
+
               {submitted && (
-                <div className="alert alert-success" role="status">
-                  Thanks — your message has been received. We'll be in touch
-                  soon.
+                <div className="alert alert-success d-flex align-items-center gap-2 mb-4" role="status">
+                  <span className="fs-5">✓</span>
+                  <div>
+                    <strong>Thank you for contacting us!</strong>
+                    <div className="small">Your message has been received. Our team will get back to you soon.</div>
+                  </div>
                 </div>
               )}
               {error && (
                 <div
-                  className="alert alert-danger"
+                  className="alert alert-danger d-flex align-items-center gap-2 mb-4"
                   role="alert"
                   aria-live="assertive"
                 >
-                  {error}
+                  <span className="fs-5">⚠️</span>
+                  <div>{error}</div>
                 </div>
               )}
               <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    placeholder="Enter Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    minLength={2}
-                    maxLength={100}
-                    required
-                    disabled={loading}
-                  />
+                <div className="row g-3">
+                  <div className="col-12 col-sm-6">
+                    <label htmlFor="name" className="form-label fw-semibold text-dark small">
+                      Your Name <span className="text-danger">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="name"
+                      placeholder="e.g. John Doe"
+                      value={form.name}
+                      onChange={handleChange}
+                      minLength={2}
+                      maxLength={100}
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                  <div className="col-12 col-sm-6">
+                    <label htmlFor="email" className="form-label fw-semibold text-dark small">
+                      Email Address <span className="text-danger">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      placeholder="e.g. john@example.com"
+                      value={form.email}
+                      onChange={handleChange}
+                      maxLength={254}
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                  <div className="col-12 col-sm-6">
+                    <label htmlFor="phone" className="form-label fw-semibold text-dark small">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      id="phone"
+                      placeholder="e.g. +91 98765 43210"
+                      value={form.phone}
+                      onChange={handleChange}
+                      maxLength={30}
+                      disabled={loading}
+                    />
+                  </div>
+                  <div className="col-12 col-sm-6">
+                    <label htmlFor="subject" className="form-label fw-semibold text-dark small">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="subject"
+                      placeholder="e.g. Course query or consultation"
+                      value={form.subject}
+                      onChange={handleChange}
+                      maxLength={150}
+                      disabled={loading}
+                    />
+                  </div>
+                  <div className="col-12">
+                    <label htmlFor="message" className="form-label fw-semibold text-dark small">
+                      Message <span className="text-danger">*</span>
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="message"
+                      rows="4"
+                      placeholder="How can we assist you with our HR academy or corporate training programs?"
+                      value={form.message}
+                      onChange={handleChange}
+                      maxLength={2000}
+                      required
+                      disabled={loading}
+                    ></textarea>
+                  </div>
+                  <div className="col-12 mt-4">
+                    <button
+                      type="submit"
+                      className="btn btn-cta px-4 py-2 fw-bold"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <>
+                          <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />
+                          Sending Message...
+                        </>
+                      ) : (
+                        "Send Message"
+                      )}
+                    </button>
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    placeholder="Enter Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    maxLength={254}
-                    required
-                    disabled={loading}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="phone" className="form-label">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    id="phone"
-                    placeholder="Enter Number"
-                    value={form.phone}
-                    onChange={handleChange}
-                    maxLength={30}
-                    disabled={loading}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="subject" className="form-label">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="subject"
-                    placeholder="Subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    maxLength={150}
-                    disabled={loading}
-                  />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="message" className="form-label">
-                    Message
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="message"
-                    rows="5"
-                    placeholder="Your message"
-                    value={form.message}
-                    onChange={handleChange}
-                    maxLength={2000}
-                    disabled={loading}
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-cta"
-                  disabled={loading}
-                >
-                  {loading ? "Submitting..." : "Submit"}
-                </button>
               </form>
             </div>
           </div>
