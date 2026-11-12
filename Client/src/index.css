@@ -352,9 +352,18 @@ button, input, select, textarea { font: inherit; }
 .site-brand .brand-name { color: var(--white); font-size: 1.12rem; line-height: 1.2; }
 .site-brand .brand-tagline { color: rgba(255, 255, 255, 0.66); font-size: 0.68rem; }
 .nav-strip .navbar-nav { min-width: 0; }
-.nav-strip .nav-link { color: rgba(255, 255, 255, 0.78); font-size: 0.86rem; padding: 0.75rem 0.6rem; white-space: nowrap; }
-.nav-strip .nav-link:hover, .nav-strip .nav-link.active { color: var(--coral); }
-.nav-strip .nav-link.active { box-shadow: inset 0 -2px var(--coral); }
+
+/* ---------- Sticky Public Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  width: 100%;
+}
+
+.nav-strip {
+  background: var(--navy);
+}
 .nav-admin-actions { display: flex; align-items: center; gap: 0.5rem; }
 .btn-admin-login { background: var(--coral); color: var(--navy); font-weight: 700; border: 1px solid var(--coral); }
 .btn-admin-login:hover { background: #f7c4cc; color: var(--navy); }
